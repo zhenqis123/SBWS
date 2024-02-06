@@ -1,2 +1,2 @@
 # SBWS
-An implementation of a smart basketball watching system
+An implementation of a smart basketball game watching system
