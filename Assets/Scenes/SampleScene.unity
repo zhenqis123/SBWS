@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.45141584, g: 0.50059485, b: 0.5706408, a: 1}
+  m_IndirectSpecularColor: {r: 0.45141518, g: 0.500594, b: 0.5706397, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/2/
+  jointPath: thu_best_basketball_seq2_2000frames/2/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/4/
+  jointPath: thu_best_basketball_seq2_2000frames/4/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/0/
+  jointPath: thu_best_basketball_seq2_2000frames/0/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -2100,7 +2100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/5/
+  jointPath: thu_best_basketball_seq2_2000frames/1/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -2393,7 +2393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/3/
+  jointPath: thu_best_basketball_seq2_2000frames/3/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -2658,7 +2658,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/6/
+  jointPath: thu_best_basketball_seq2_2000frames/6/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -4572,7 +4572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/8/
+  jointPath: thu_best_basketball_seq2_2000frames/8/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -10892,7 +10892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/9/
+  jointPath: thu_best_basketball_seq2_2000frames/9/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -11933,7 +11933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/7/
+  jointPath: thu_best_basketball_seq2_2000frames/7/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
@@ -12105,7 +12105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a8aef607c53cb14e86335e534a90c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jointPath: E:/pointclouddata/thu_best_basketball_seq2_2000frames/1/
+  jointPath: thu_best_basketball_seq2_2000frames/5/
   filename: joints_
   seqLength: 2000
   seqCurrent: 0
