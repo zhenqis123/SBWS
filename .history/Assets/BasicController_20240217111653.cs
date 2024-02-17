@@ -54,5 +54,6 @@ public class BasicController : MonoBehaviour
     public void SetFPS(float sliderValue)
     {
         FrameRate = (int)(sliderValue * MaxFrameRate);
+
     }
 }
