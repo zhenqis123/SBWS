@@ -60,17 +60,8 @@ public class BasicController : MonoBehaviour
     public void ResetSpeed(){
         Time.timeScale = 1.0f;
     }
-
     public void SetFPS(float sliderValue)
     {
         FrameRate = (int)(sliderValue * MaxFrameRate);
-    }
-
-    public void Replay()
-    {
-        foreach (var character in VNectModels)
-        {
-            character.Replay();
-        }
     }
 }

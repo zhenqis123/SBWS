@@ -342,9 +342,4 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         measurement.P.y = KalmanParamR * (measurement.P.y + KalmanParamQ) / (KalmanParamR + measurement.P.y + KalmanParamQ);
         measurement.P.z = KalmanParamR * (measurement.P.z + KalmanParamQ) / (KalmanParamR + measurement.P.z + KalmanParamQ);
     }
-
-    public void Replay(){
-        seqCurrent = 0;
-        result = new float[15, 3];
-    }
 }
