@@ -120,7 +120,7 @@ public class VNectModel15 : MonoBehaviour
     public float SkeletonScale;
 
     // Joint position and bone
-    public JointPoint[] jointPoints;
+    private JointPoint[] jointPoints;
     public JointPoint[] JointPoints { get { return jointPoints; } }
 
     private Vector3 initPosition; // Initial center position
@@ -471,10 +471,5 @@ public class VNectModel15 : MonoBehaviour
         sk.Line.material = SkeletonMaterial;
 
         Skeletons.Add(sk);
-    }
-
-    public Transform getHeadTransform()
-    {
-        return jointPoints[PositionIndex15.head.Int()].Transform;
     }
 }

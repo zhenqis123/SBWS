@@ -472,9 +472,4 @@ public class VNectModel15 : MonoBehaviour
 
         Skeletons.Add(sk);
     }
-
-    public Transform getHeadTransform()
-    {
-        return jointPoints[PositionIndex15.head.Int()].Transform;
-    }
 }

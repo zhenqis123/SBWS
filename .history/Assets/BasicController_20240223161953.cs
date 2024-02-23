@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.InputSystem;
 
 public class BasicController : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class BasicController : MonoBehaviour
     public int initFrameRate = 60;
     public int MaxFrameRate = 150;
     public VNectBarracudaRunner15Basket[] VNectModels;
-    public GameObject VRUI;
 
     private Vector3 initPosition;
     private Transform[] HeadTransforms;
@@ -44,35 +42,31 @@ public class BasicController : MonoBehaviour
     void Update()
     {
         Application.targetFrameRate = FrameRate;
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            StopFollow();
-        }
-
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            makeInvisible();
-        }
+        // for(int i=0;i<VNectModels.Length;i++)
+        // {
+        //     HeadTransforms[i] = VNectModels[i].VNectModel.jointPoints[PositionIndex15.head.Int()].Transform;
+        // }
+        // Debug.Log("FollowNum: " + FollowNum);
     }
 
     void LateUpdate()
     {
-        if (FollowNum == -1 || FollowNum >= VNectModels.Length || count<10)
+        if (FollowNum == -1 || FollowNum >= VNectModels.Length)
         {
             // CameraTransform.position = Vector3.Lerp(CameraTransform.position, initPosition, smoothing * Time.deltaTime);
+            Debug.Log("FollowNum: " + FollowNum);
+            return;
         }
         else{
-        Debug.Log("FollowNum: " + FollowNum);
-        for(int i = 0;i<VNectModels.Length;i++)
+                    foreach (var character in VNectModels)
         {
-            HeadTransforms[i] = VNectModels[i].getHeadTransform();
+            Debug.Log(character.getHeadTransform().position);
         }
+            Debug.Log("FollowNum: " + FollowNum);
         Vector3 targetPosition = HeadTransforms[FollowNum].position;
-        Debug.Log(targetPosition);
         CameraTransform.position = Vector3.Lerp(CameraTransform.position, targetPosition, smoothing * Time.deltaTime);
         CameraTransform.LookAt(HeadTransforms[FollowNum]);
         }
-        count++;
     }
     
     public void StopFollow()
@@ -134,10 +128,5 @@ public class BasicController : MonoBehaviour
         {
             character.Replay();
         }
-    }
-
-    private void makeInvisible()
-    {
-        VRUI.SetActive(false);
     }
 }

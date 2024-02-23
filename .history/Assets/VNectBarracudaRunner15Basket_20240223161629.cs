@@ -348,7 +348,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         result = new float[15, 3];
     }
 
-    public Transform getHeadTransform()
+    public transform getHeadTransform()
     {
         return jointPoints[PositionIndex15.head.Int()].Transform;
     }

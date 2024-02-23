@@ -48,11 +48,6 @@ public class BasicController : MonoBehaviour
         {
             StopFollow();
         }
-
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            makeInvisible();
-        }
     }
 
     void LateUpdate()
@@ -136,8 +131,5 @@ public class BasicController : MonoBehaviour
         }
     }
 
-    private void makeInvisible()
-    {
-        VRUI.SetActive(false);
-    }
+    
 }

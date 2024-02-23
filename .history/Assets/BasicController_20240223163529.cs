@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.InputSystem;
 
 public class BasicController : MonoBehaviour
 {
@@ -11,7 +10,6 @@ public class BasicController : MonoBehaviour
     public int initFrameRate = 60;
     public int MaxFrameRate = 150;
     public VNectBarracudaRunner15Basket[] VNectModels;
-    public GameObject VRUI;
 
     private Vector3 initPosition;
     private Transform[] HeadTransforms;
@@ -44,15 +42,6 @@ public class BasicController : MonoBehaviour
     void Update()
     {
         Application.targetFrameRate = FrameRate;
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            StopFollow();
-        }
-
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            makeInvisible();
-        }
     }
 
     void LateUpdate()
@@ -134,10 +123,5 @@ public class BasicController : MonoBehaviour
         {
             character.Replay();
         }
-    }
-
-    private void makeInvisible()
-    {
-        VRUI.SetActive(false);
     }
 }

@@ -25,6 +25,7 @@ TagManager:
   - RAnkle
   - LAnkle
   - Nose
+  - VRCamera
   layers:
   - Default
   - TransparentFX

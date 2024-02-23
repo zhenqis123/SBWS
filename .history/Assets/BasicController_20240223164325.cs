@@ -11,7 +11,6 @@ public class BasicController : MonoBehaviour
     public int initFrameRate = 60;
     public int MaxFrameRate = 150;
     public VNectBarracudaRunner15Basket[] VNectModels;
-    public GameObject VRUI;
 
     private Vector3 initPosition;
     private Transform[] HeadTransforms;
@@ -44,14 +43,9 @@ public class BasicController : MonoBehaviour
     void Update()
     {
         Application.targetFrameRate = FrameRate;
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        if (Keyboard.current[Key.Escape].wasPressedThisFrame)
         {
             StopFollow();
-        }
-
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            makeInvisible();
         }
     }
 
@@ -134,10 +128,5 @@ public class BasicController : MonoBehaviour
         {
             character.Replay();
         }
-    }
-
-    private void makeInvisible()
-    {
-        VRUI.SetActive(false);
     }
 }

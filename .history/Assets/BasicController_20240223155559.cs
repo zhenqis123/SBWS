@@ -3,26 +3,79 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
-using UnityEngine.InputSystem;
+public enum PositionIndex15 : int
+{
+/*    rShldrBend = 0,
+    rForearmBend,
+    rHand,
+    rThumb2,
+    rMid1,
 
+    lShldrBend,
+    lForearmBend,
+    lHand,
+    lThumb2,
+    lMid1,
+
+    lEar,
+    lEye,
+    rEar,
+    rEye,
+    Nose,
+
+    rThighBend,
+    rShin,
+    rFoot,
+    rToe,
+
+    lThighBend,
+    lShin,
+    lFoot,
+    lToe,
+
+    abdomenUpper,*/
+    neck = 0,
+    nose,
+    hip,
+    lShldrBend,
+    lForearmBend,
+    lHand,
+    lThighBend,
+    lShin,
+    lFoot,
+    rShldrBend,
+    rForearmBend,
+    rHand,
+    rThighBend,
+    rShin,
+    rFoot,
+
+    //Calculated coordinates
+    //hip,
+    head,
+    //neck,
+    spine,
+    lToe,
+    rToe,
+
+    Count,
+    None,
+}
 public class BasicController : MonoBehaviour
 {
     private int FrameRate = 0;
     public int initFrameRate = 60;
     public int MaxFrameRate = 150;
     public VNectBarracudaRunner15Basket[] VNectModels;
-    public GameObject VRUI;
 
     private Vector3 initPosition;
     private Transform[] HeadTransforms;
     private Vector3[] HeadPositions;
     public Transform CameraTransform;
-    private int FollowNum = -1;
+    private int FollowNum = 30;
 
     public Button[] FollowButtons;
     private float smoothing = 3.0f;
-
-    private int count = 0;
     // Start is called before the first frame update
     private void Start()
     {
@@ -31,8 +84,11 @@ public class BasicController : MonoBehaviour
         FrameRate = initFrameRate;
         Random.seed = 1;
         initPosition = new Vector3(18, 0, -18);
-        HeadTransforms = new Transform[VNectModels.Length];
-
+        for (int i = 0; i < VNectModels.Length; i++)
+        {
+            HeadTransforms[i] = VNectModels[i].jointPoints[PositionIndex15.head.Int()].Transform;
+        }
+        FollowNum = 30;int j = 0;
         for(int i=0;i<FollowButtons.Length;i++)
         {
             int tem = i;
@@ -44,35 +100,23 @@ public class BasicController : MonoBehaviour
     void Update()
     {
         Application.targetFrameRate = FrameRate;
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            StopFollow();
-        }
-
-        if (Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            makeInvisible();
-        }
+        // Debug.Log("FollowNum: " + FollowNum);
     }
 
     void LateUpdate()
     {
-        if (FollowNum == -1 || FollowNum >= VNectModels.Length || count<10)
+        if (FollowNum == -1 || FollowNum >= VNectModels.Length)
         {
             // CameraTransform.position = Vector3.Lerp(CameraTransform.position, initPosition, smoothing * Time.deltaTime);
+            Debug.Log("FollowNum: " + FollowNum);
+            return;
         }
         else{
-        Debug.Log("FollowNum: " + FollowNum);
-        for(int i = 0;i<VNectModels.Length;i++)
-        {
-            HeadTransforms[i] = VNectModels[i].getHeadTransform();
+            Debug.Log("FollowNum: " + FollowNum);
+        // Vector3 targetPosition = HeadTransforms[FollowNum].position;
+        // CameraTransform.position = Vector3.Lerp(CameraTransform.position, targetPosition, smoothing * Time.deltaTime);
+        // CameraTransform.LookAt(HeadTransforms[FollowNum]);
         }
-        Vector3 targetPosition = HeadTransforms[FollowNum].position;
-        Debug.Log(targetPosition);
-        CameraTransform.position = Vector3.Lerp(CameraTransform.position, targetPosition, smoothing * Time.deltaTime);
-        CameraTransform.LookAt(HeadTransforms[FollowNum]);
-        }
-        count++;
     }
     
     public void StopFollow()
@@ -134,10 +178,5 @@ public class BasicController : MonoBehaviour
         {
             character.Replay();
         }
-    }
-
-    private void makeInvisible()
-    {
-        VRUI.SetActive(false);
     }
 }
