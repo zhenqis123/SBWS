@@ -477,4 +477,16 @@ public class VNectModel15 : MonoBehaviour
     {
         return jointPoints[PositionIndex15.head.Int()].Transform;
     }
+
+    public void ResetPos(Vector3 SkeletonPos)
+    {
+        foreach (var sk in Skeletons)
+        {
+            var s = sk.start;
+            var e = sk.end;
+
+            sk.Line.SetPosition(0, SkeletonPos);
+            sk.Line.SetPosition(1, SkeletonPos);
+        }
+    }
 }

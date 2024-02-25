@@ -22,6 +22,11 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     public int seqLength = 2000;
     public int seqCurrent = 0;
 
+    public Vector3 CourtModelOffset;
+
+    public Vector3 CourtPositionOffset;
+    public Vector3 CourtPosition;
+    public int count2; //count for calculating the position offset of the court and models
     public bool Verbose = true;
 
     public VNectModel15 VNectModel;
@@ -74,6 +79,8 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     /// </summary>
     public float LowPassParam;
 
+    private Vector3 posBefore;
+    private Vector3 posAfter;
 
     public Text Msg;
     public float WaitTimeModelLoad = 10f;
@@ -95,6 +102,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         StartCoroutine("WaitLoad");
 
         isAnimationplaying = true;
+        CourtPosition = GameObject.Find("Basketball Court").transform.position;
     }
 
     public void ToggleAnimation()
@@ -102,6 +110,20 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         isAnimationplaying = !isAnimationplaying;
     }
 
+    public void savePosition()
+    {
+        CourtPosition = GameObject.Find("Basketball Court").transform.position;
+    }
+
+    public void loadPosition()
+    {
+        CourtPositionOffset = GameObject.Find("Basketball Court").transform.position - CourtPosition;
+        Debug.Log("CourtPositionOffset: " + CourtPositionOffset);
+        VNectModel.SkeletonX = VNectModel.SkeletonX + CourtPositionOffset.x;
+        VNectModel.SkeletonY = VNectModel.SkeletonY + CourtPositionOffset.y;
+        VNectModel.SkeletonZ = VNectModel.SkeletonZ + CourtPositionOffset.z;
+        VNectModel.PoseUpdate();
+    }
     private void FixedUpdate()
     {
         if (!Lock && isAnimationplaying)
@@ -110,6 +132,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
             readJoints();
 
             UpdateVNectModel();
+            
         }
     }
 

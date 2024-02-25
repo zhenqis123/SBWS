@@ -93,6 +93,21 @@ public class BasicController : MonoBehaviour
         }
     }
 
+    public void savePosition()
+    {
+        foreach (var character in VNectModels)
+        {
+            character.savePosition();
+        }
+    }
+
+    public void loadPosition()
+    {
+        foreach (var character in VNectModels)
+        {
+            character.loadPosition();
+        }
+    }
     public void AddupFPS()
     {
         FrameRate += 5;
