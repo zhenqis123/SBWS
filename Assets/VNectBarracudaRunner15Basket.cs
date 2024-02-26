@@ -119,10 +119,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     {
         CourtPositionOffset = GameObject.Find("Basketball Court").transform.position - CourtPosition;
         Debug.Log("CourtPositionOffset: " + CourtPositionOffset);
-        VNectModel.SkeletonX = VNectModel.SkeletonX + CourtPositionOffset.x;
-        VNectModel.SkeletonY = VNectModel.SkeletonY + CourtPositionOffset.y;
-        VNectModel.SkeletonZ = VNectModel.SkeletonZ + CourtPositionOffset.z;
-        VNectModel.PoseUpdate();
+
     }
     private void FixedUpdate()
     {
