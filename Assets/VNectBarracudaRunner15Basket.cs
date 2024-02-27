@@ -25,7 +25,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     public bool Verbose = true;
 
     public VNectModel15 VNectModel;
-
+    private Vector3 CourtMove;
     public float[,] result;
 
     /// <summary>
@@ -138,8 +138,6 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         string[] rows = input.Split('\n');
         for (i = 0; i < JointNum; i++)
         {
-            //print("row:  ");
-            //print(row);
             if (rows[i] == "")
             {
                 break;
@@ -148,27 +146,13 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
             j = 0;
 
             string[] cols = rows[i].Trim().Split(' ');
-            for (j = 0; j < 4; j++) 
-            //foreach (var col in row.Trim().Split(' '))
-            {
-                //print("col:    ");
-                //print(col);
-                if (j == 3)
-                {
-                    continue;
-                }
-                //result[i, j] = float.Parse(col.Trim());
-                result[i, j] = float.Parse(cols[j]);
-                //j++;
-            }
-            //i++;
+            result[i, 0] = float.Parse(cols[0])+ CourtMove.x;
+            result[i, 1] = float.Parse(cols[1])+ CourtMove.y;
+            result[i, 2] = float.Parse(cols[2])+ CourtMove.z;
         }
 
         seqCurrent++;
-        // print(result[0, 0]);
-        // print(result[0, 1]);
-        // print(result[0, 2]);
-        // print(seqCurrent);
+
         return true;
     }
 
@@ -180,16 +164,13 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
 
         // Init VNect model
         jointPoints = VNectModel.Init();
-       // print("test");
+
         PredictPose();
 
-        //yield return new WaitForSeconds(WaitTimeModelLoad);
-
-        // Init VideoCapture
         
         Lock = false;
         yield return null;
-        //Msg.gameObject.SetActive(false);
+
     }
 
     private const string inputName_1 = "input.1";
@@ -351,5 +332,10 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     public Transform getHeadTransform()
     {
         return jointPoints[PositionIndex15.head.Int()].Transform;
+    }
+
+    public void ApplyCourtMove(Vector3 move)
+    {
+        CourtMove = move;
     }
 }

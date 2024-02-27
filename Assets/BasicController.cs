@@ -13,10 +13,9 @@ public class BasicController : MonoBehaviour
     public VNectBarracudaRunner15Basket[] VNectModels;
     public GameObject VRUI;
 
-    private Vector3 initPosition;
-    private Transform[] HeadTransforms;
-    private Vector3[] HeadPositions;
-    public Transform CameraTransform;
+    private Transform CourtTransform;
+    private Vector3 InitPos;
+    private Vector3 CourtMove;
     private int FollowNum = -1;
 
     public Button[] FollowButtons;
@@ -30,9 +29,8 @@ public class BasicController : MonoBehaviour
         Application.targetFrameRate = initFrameRate;
         FrameRate = initFrameRate;
         Random.seed = 1;
-        initPosition = new Vector3(18, 0, -18);
-        HeadTransforms = new Transform[VNectModels.Length];
-
+        CourtTransform = GameObject.Find("Basketball Court").transform;
+        InitPos = CourtTransform.position;
         for(int i=0;i<FollowButtons.Length;i++)
         {
             int tem = i;
@@ -53,25 +51,16 @@ public class BasicController : MonoBehaviour
         {
             makeInvisible();
         }
+
+        CourtMove = CourtTransform.position - InitPos;
+        for(int i = 0;i<VNectModels.Length;i++)
+        {
+            VNectModels[i].ApplyCourtMove(CourtMove);
+        }
     }
 
     void LateUpdate()
     {
-        if (FollowNum == -1 || FollowNum >= VNectModels.Length || count<10)
-        {
-            // CameraTransform.position = Vector3.Lerp(CameraTransform.position, initPosition, smoothing * Time.deltaTime);
-        }
-        else{
-        Debug.Log("FollowNum: " + FollowNum);
-        for(int i = 0;i<VNectModels.Length;i++)
-        {
-            HeadTransforms[i] = VNectModels[i].getHeadTransform();
-        }
-        Vector3 targetPosition = HeadTransforms[FollowNum].position;
-        Debug.Log(targetPosition);
-        CameraTransform.position = Vector3.Lerp(CameraTransform.position, targetPosition, smoothing * Time.deltaTime);
-        CameraTransform.LookAt(HeadTransforms[FollowNum]);
-        }
         count++;
     }
     
