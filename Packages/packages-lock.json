@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.atteneder.ktx": {
+      "version": "2.2.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.unitywebrequest": "1.0.0"
+      },
+      "url": "https://package.openupm.com"
+    },
     "com.microsoft.mixedreality.movingplatform": {
       "version": "file:MixedReality/com.microsoft.mixedreality.movingplatform-0.0.3.tgz",
       "depth": 0,
