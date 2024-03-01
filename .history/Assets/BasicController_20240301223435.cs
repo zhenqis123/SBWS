@@ -153,9 +153,4 @@ public class BasicController : MonoBehaviour
         FPS.text = "FPS: " + FrameRate.ToString();
         Application.targetFrameRate = FrameRate;
     }
-
-    public void CloseApp()
-    {
-        Application.Quit();
-    }
 }
