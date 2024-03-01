@@ -27,7 +27,6 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
 
     public VNectModel15 VNectModel;
     private Transform CourtTransform;
-    private Vector3 CourtCenter;
     private Vector3 CourtMove;
     private Vector3 CourtRotate;
     public float[,] result;
@@ -142,12 +141,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         {
             Vector3 point = new Vector3(result_all[seqCurrent * 15 + i, 0], result_all[seqCurrent * 15 + i, 1], result_all[seqCurrent * 15 + i, 2]);
             // Vector3 localPoint = CourtTransform.InverseTransformPoint(point);
-            CourtCenter = CourtTransform.position;
-            Vector3 localPoint = point - CourtCenter;
-            Quaternion rotation = Quaternion.Euler(CourtRotate);
-            Vector3 transformedlocalPoint = rotation * localPoint;
-            Vector3 transformedPoint = transformedlocalPoint + CourtCenter;
-            // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);             
+            Vector3 transformedPoint = CourtRotate * point;
             // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);
             result[i, 0] = transformedPoint.x + CourtMove.x;
             result[i, 1] = transformedPoint.y + CourtMove.y;

@@ -19,7 +19,7 @@ public class BasicController : MonoBehaviour
     private Transform CourtTransform;
     private Vector3 InitCourtPos;
     private Vector3 CourtMove;
-    private Vector3 CourtRotate;
+    private Quaternion CourtRotate;
     private int FollowNum = -1;
 
     public TextMeshProUGUI FPS;
@@ -59,8 +59,7 @@ public class BasicController : MonoBehaviour
         }
 
         CourtMove = CourtTransform.position - InitCourtPos;
-        CourtRotate = CourtTransform.rotation.eulerAngles;
-
+        CourtRotate = CourtTransform.localRotation;
         for(int i = 0;i<VNectModels.Length;i++)
         {
             VNectModels[i].ApplyCourtMove(CourtMove, CourtRotate);

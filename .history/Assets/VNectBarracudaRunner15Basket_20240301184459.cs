@@ -27,9 +27,8 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
 
     public VNectModel15 VNectModel;
     private Transform CourtTransform;
-    private Vector3 CourtCenter;
     private Vector3 CourtMove;
-    private Vector3 CourtRotate;
+    private Quaternion CourtRotate;
     public float[,] result;
     public float[,] result_all;
 
@@ -141,14 +140,9 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         for(int i = 0; i < 15; i++)
         {
             Vector3 point = new Vector3(result_all[seqCurrent * 15 + i, 0], result_all[seqCurrent * 15 + i, 1], result_all[seqCurrent * 15 + i, 2]);
-            // Vector3 localPoint = CourtTransform.InverseTransformPoint(point);
-            CourtCenter = CourtTransform.position;
-            Vector3 localPoint = point - CourtCenter;
-            Quaternion rotation = Quaternion.Euler(CourtRotate);
-            Vector3 transformedlocalPoint = rotation * localPoint;
-            Vector3 transformedPoint = transformedlocalPoint + CourtCenter;
-            // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);             
-            // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);
+            Vector3 localPoint = CourtTransform.InverseTransformPoint(point);
+            Vector3 transformedlocalPoint = CourtRotate * localPoint;
+            Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);
             result[i, 0] = transformedPoint.x + CourtMove.x;
             result[i, 1] = transformedPoint.y + CourtMove.y;
             result[i, 2] = transformedPoint.z + CourtMove.z;
@@ -338,7 +332,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         return jointPoints[PositionIndex15.head.Int()].Transform;
     }
 
-    public void ApplyCourtMove(Vector3 move, Vector3 rotate)
+    public void ApplyCourtMove(Vector3 move, UnityEngine.Quaternion rotate)
     {
         CourtMove = move;
         CourtRotate = rotate;

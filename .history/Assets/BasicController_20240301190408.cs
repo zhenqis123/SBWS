@@ -60,7 +60,6 @@ public class BasicController : MonoBehaviour
 
         CourtMove = CourtTransform.position - InitCourtPos;
         CourtRotate = CourtTransform.rotation.eulerAngles;
-
         for(int i = 0;i<VNectModels.Length;i++)
         {
             VNectModels[i].ApplyCourtMove(CourtMove, CourtRotate);

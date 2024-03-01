@@ -146,8 +146,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
             Vector3 localPoint = point - CourtCenter;
             Quaternion rotation = Quaternion.Euler(CourtRotate);
             Vector3 transformedlocalPoint = rotation * localPoint;
-            Vector3 transformedPoint = transformedlocalPoint + CourtCenter;
-            // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);             
+            Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);
             // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);
             result[i, 0] = transformedPoint.x + CourtMove.x;
             result[i, 1] = transformedPoint.y + CourtMove.y;

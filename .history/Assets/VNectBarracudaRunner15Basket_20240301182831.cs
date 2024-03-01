@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 using System.IO;
-// using System.Numerics;
+using System.Numerics;
 //using Unity.Barracuda;
 
 /// <summary>
@@ -26,10 +26,8 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     public bool Verbose = true;
 
     public VNectModel15 VNectModel;
-    private Transform CourtTransform;
-    private Vector3 CourtCenter;
     private Vector3 CourtMove;
-    private Vector3 CourtRotate;
+    private Quaternion CourtRotate;
     public float[,] result;
     public float[,] result_all;
 
@@ -114,7 +112,6 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
             result_all[i, 1] = float.Parse(cols[1]) * 0.1f;
             result_all[i, 2] = float.Parse(cols[2]) * 0.1f;
         }
-        CourtTransform = GameObject.Find("Basketball Court").transform;
     }
 
     public void ToggleAnimation()
@@ -140,21 +137,15 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         //Adjust the joints position of the players according to the court
         for(int i = 0; i < 15; i++)
         {
-            Vector3 point = new Vector3(result_all[seqCurrent * 15 + i, 0], result_all[seqCurrent * 15 + i, 1], result_all[seqCurrent * 15 + i, 2]);
-            // Vector3 localPoint = CourtTransform.InverseTransformPoint(point);
-            CourtCenter = CourtTransform.position;
-            Vector3 localPoint = point - CourtCenter;
-            Quaternion rotation = Quaternion.Euler(CourtRotate);
-            Vector3 transformedlocalPoint = rotation * localPoint;
-            Vector3 transformedPoint = transformedlocalPoint + CourtCenter;
-            // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);             
-            // Vector3 transformedPoint = CourtTransform.TransformPoint(transformedlocalPoint);
-            result[i, 0] = transformedPoint.x + CourtMove.x;
-            result[i, 1] = transformedPoint.y + CourtMove.y;
-            result[i, 2] = transformedPoint.z + CourtMove.z;
+            result[i, 0] = result_all[seqCurrent * 15 + i, 0];
+            result[i, 1] = result_all[seqCurrent * 15 + i, 1];
+            result[i, 2] = result_all[seqCurrent * 15 + i, 2];
             // result[i, 0] = result_all[seqCurrent * 15 + i, 0] + CourtMove.x;
             // result[i, 1] = result_all[seqCurrent * 15 + i, 1] + CourtMove.y;
             // result[i, 2] = result_all[seqCurrent * 15 + i, 2] + CourtMove.z;
+            result[i, 0] = result_all[seqCurrent * 15 + i, 0] * CourtRotate + CourtMove.x;
+            result[i, 1] = result_all[seqCurrent * 15 + i, 1] * CourtRotate + CourtMove.y;
+            result[i, 2] = result_all[seqCurrent * 15 + i, 2] * CourtRotate + CourtMove.z;
         }
 
         seqCurrent++;
@@ -338,7 +329,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         return jointPoints[PositionIndex15.head.Int()].Transform;
     }
 
-    public void ApplyCourtMove(Vector3 move, Vector3 rotate)
+    public void ApplyCourtMove(Vector3 move, UnityEngine.Quaternion rotate)
     {
         CourtMove = move;
         CourtRotate = rotate;
