@@ -106,7 +106,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         for (int i = 0; i < 149910; i++)
         {
             var cols = rows[i].Trim().Split(' ');
-            result_all[i, 0] = float.Parse(cols[0]) * 0.1f;
+            result_all[i, 0] = float.Parse(cols[0]) * 0.1f ;
             result_all[i, 1] = float.Parse(cols[1]) * 0.1f;
             result_all[i, 2] = float.Parse(cols[2]) * 0.1f;
         }
@@ -135,9 +135,6 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         //Adjust the joints position of the players according to the court
         for(int i = 0; i < 15; i++)
         {
-        //     result[i, 0] = result_all[seqCurrent * 15 + i, 0];
-        //     result[i, 1] = result_all[seqCurrent * 15 + i, 1];
-        //     result[i, 2] = result_all[seqCurrent * 15 + i, 2];
             result[i, 0] = result_all[seqCurrent * 15 + i, 0] + CourtMove.x;
             result[i, 1] = result_all[seqCurrent * 15 + i, 1] + CourtMove.y;
             result[i, 2] = result_all[seqCurrent * 15 + i, 2] + CourtMove.z;

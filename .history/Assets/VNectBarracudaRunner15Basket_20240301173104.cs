@@ -135,12 +135,12 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         //Adjust the joints position of the players according to the court
         for(int i = 0; i < 15; i++)
         {
-        //     result[i, 0] = result_all[seqCurrent * 15 + i, 0];
-        //     result[i, 1] = result_all[seqCurrent * 15 + i, 1];
-        //     result[i, 2] = result_all[seqCurrent * 15 + i, 2];
-            result[i, 0] = result_all[seqCurrent * 15 + i, 0] + CourtMove.x;
-            result[i, 1] = result_all[seqCurrent * 15 + i, 1] + CourtMove.y;
-            result[i, 2] = result_all[seqCurrent * 15 + i, 2] + CourtMove.z;
+            result[i, 0] = result_all[seqCurrent * 15 + i, 0];
+            result[i, 1] = result_all[seqCurrent * 15 + i, 1];
+            result[i, 2] = result_all[seqCurrent * 15 + i, 2];
+            // result[i, 0] = result_all[seqCurrent * 15 + i, 0] + CourtMove.x;
+            // result[i, 1] = result_all[seqCurrent * 15 + i, 1] + CourtMove.y;
+            // result[i, 2] = result_all[seqCurrent * 15 + i, 2] + CourtMove.z;
         }
 
         seqCurrent++;
