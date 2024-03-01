@@ -18,7 +18,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
 
     //public string jointPath = "E:/pointclouddata/joints/0/";
     public string jointPath = "E:/pointclouddata/thu_best_basketball_seq2_2000frames/0/";
-    public string filename = "joints_";
+    public string filename;
     public int seqLength = 2000;
     public int seqCurrent = 0;
 
@@ -27,6 +27,7 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
     public VNectModel15 VNectModel;
     private Vector3 CourtMove;
     public float[,] result;
+    public float[,] result_all;
 
     /// <summary>
     /// Coordinates of joint points
@@ -77,7 +78,6 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
 
     public Text Msg;
     public float WaitTimeModelLoad = 10f;
-    private float Countdown = 0;
     public Texture2D InitImg;
 
     private bool isAnimationplaying = false;
@@ -95,6 +95,21 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
         StartCoroutine("WaitLoad");
 
         isAnimationplaying = true;
+        var InitCourtPos = GameObject.Find("Basketball Court").transform.position;
+
+        var fullname = Path.Combine(jointPath, filename);
+        var Textfile = Resources.Load<TextAsset>(filename);
+       // var input = File.ReadAllText(filename);
+        var input = Textfile.text;
+        var rows = input.Split('\n');
+        result_all = new float[149910, 3];
+        for (int i = 0; i < 149910; i++)
+        {
+            var cols = rows[i].Trim().Split(' ');
+            result_all[i, 0] = float.Parse(cols[0]) ;
+            result_all[i, 1] = float.Parse(cols[1]) ;
+            result_all[i, 2] = float.Parse(cols[2]) ;
+        }
     }
 
     public void ToggleAnimation()
@@ -115,40 +130,12 @@ public class VNectBarracudaRunner15Basket : MonoBehaviour
 
     private bool readJoints()
     {
-        result = new float[seqLength, 3];
-
-        if (seqCurrent == seqLength)
+        result = new float[15, 3];
+        for(int i = 0; i < 15; i++)
         {
-            seqCurrent = 0;
-
-        }
-
-        string fullfilename = filename + seqCurrent.ToString() + ".txt";
-        fullfilename = Path.Combine(jointPath, fullfilename);
-
-        if (!File.Exists(fullfilename))
-        {
-            
-        }
-
-        string input = File.ReadAllText(fullfilename);
-
-        int i = 0, j = 0;
-
-        string[] rows = input.Split('\n');
-        for (i = 0; i < JointNum; i++)
-        {
-            if (rows[i] == "")
-            {
-                break;
-            }
-
-            j = 0;
-
-            string[] cols = rows[i].Trim().Split(' ');
-            result[i, 0] = float.Parse(cols[0])+ CourtMove.x;
-            result[i, 1] = float.Parse(cols[1])+ CourtMove.y;
-            result[i, 2] = float.Parse(cols[2])+ CourtMove.z;
+            result[i, 0] = result_all[seqCurrent * 15 + i, 0] + CourtMove.x;
+            result[i, 1] = result_all[seqCurrent * 15 + i, 1] + CourtMove.y;
+            result[i, 2] = result_all[seqCurrent * 15 + i, 2] + CourtMove.z;
         }
 
         seqCurrent++;

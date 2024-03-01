@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR;
 using UnityEngine.InputSystem;
+using TMPro;
+using MixedReality.Toolkit.UX;
+using Slider = MixedReality.Toolkit.UX.Slider;
 
 public class BasicController : MonoBehaviour
 {
@@ -14,10 +17,12 @@ public class BasicController : MonoBehaviour
     public GameObject VRUI;
 
     private Transform CourtTransform;
-    private Vector3 InitPos;
+    private Vector3 InitCourtPos;
     private Vector3 CourtMove;
     private int FollowNum = -1;
 
+    public TextMeshProUGUI FPS;
+    public Slider FPSSlider;
     public Button[] FollowButtons;
     private float smoothing = 3.0f;
 
@@ -30,18 +35,18 @@ public class BasicController : MonoBehaviour
         FrameRate = initFrameRate;
         Random.seed = 1;
         CourtTransform = GameObject.Find("Basketball Court").transform;
-        InitPos = CourtTransform.position;
+        InitCourtPos = CourtTransform.position;
         for(int i=0;i<FollowButtons.Length;i++)
         {
             int tem = i;
             FollowButtons[i].onClick.AddListener(() => FollowCharacter(tem));
         }
+        FPS.text = "FPS: " + FrameRate.ToString();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Application.targetFrameRate = FrameRate;
         if (Keyboard.current.digit1Key.wasPressedThisFrame)
         {
             StopFollow();
@@ -52,11 +57,13 @@ public class BasicController : MonoBehaviour
             makeInvisible();
         }
 
-        CourtMove = CourtTransform.position - InitPos;
+        CourtMove = CourtTransform.position - InitCourtPos;
         for(int i = 0;i<VNectModels.Length;i++)
         {
             VNectModels[i].ApplyCourtMove(CourtMove);
         }
+        AdjustFPS();
+        
     }
 
     void LateUpdate()
@@ -92,6 +99,10 @@ public class BasicController : MonoBehaviour
         FrameRate -= 5;
     }
 
+    public void ResetFPS()
+    {
+        Application.targetFrameRate = initFrameRate;
+    }
     public void SpeedUp()
     {
         if(Time.timeScale < 5.0f)
@@ -128,5 +139,14 @@ public class BasicController : MonoBehaviour
     private void makeInvisible()
     {
         VRUI.SetActive(false);
+    }
+
+    public void AdjustFPS()
+    {
+        var FPSvalue = FPSSlider.Value;
+        
+        FrameRate = (int)(initFrameRate * 2 * FPSvalue);
+        Application.targetFrameRate = (int)(initFrameRate * 2 * FPSvalue);
+        FPS.text = "FPS: " + FrameRate.ToString();
     }
 }

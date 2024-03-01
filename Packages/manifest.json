@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.atteneder.ktx": "2.2.3",
     "com.microsoft.mixedreality.movingplatform": "file:MixedReality/com.microsoft.mixedreality.movingplatform-0.0.3.tgz",
     "com.microsoft.mixedreality.openxr": "file:MixedReality/com.microsoft.mixedreality.openxr-1.10.0.tgz",
     "com.microsoft.mixedreality.sceneunderstanding": "file:MixedReality/com.microsoft.mixedreality.sceneunderstanding-0.6.0.tgz",
@@ -21,7 +22,7 @@
     "com.unity.visualscripting": "1.7.8",
     "com.unity.xr.core-utils": "2.3.0",
     "com.unity.xr.interaction.toolkit": "2.0.4",
-    "com.unity.xr.management": "4.2.1",
+    "com.unity.xr.management": "4.4.1",
     "com.unity.xr.oculus": "3.0.2",
     "com.unity.xr.openxr": "1.9.1",
     "com.valvesoftware.unity.openvr": "file:../Assets/SteamVR/OpenVRUnityXRPackage/Editor/com.valvesoftware.unity.openvr-1.2.1.tgz",
@@ -68,8 +69,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.atteneder.ktx": "2.2.3"
+    "com.unity.modules.xr": "1.0.0"
   },
   "scopedRegistries": [
     {
