@@ -1,13 +1,4 @@
 {
-  "scopedRegistries": [
-    {
-      "name": "OpenUPM",
-      "url": "https://package.openupm.com",
-      "scopes": [
-        "com.atteneder"
-      ]
-    }
-  ],
   "dependencies": {
     "com.atteneder.ktx": "2.2.3",
     "com.microsoft.mixedreality.movingplatform": "file:MixedReality/com.microsoft.mixedreality.movingplatform-0.0.3.tgz",
@@ -78,7 +69,15 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "com.microsoft.mixedreality.toolkit.planefinding": "file:MixedReality/com.microsoft.mixedreality.toolkit.planefinding-1.0.0.tgz"
-  }
+    "com.unity.modules.xr": "1.0.0"
+  },
+  "scopedRegistries": [
+    {
+      "name": "OpenUPM",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.atteneder"
+      ]
+    }
+  ]
 }
